@@ -7,7 +7,16 @@ def pr_board(board):
 
 
 
-def check_winner(board_2d):
+def check_winner(board):
+
+
+
+    
+    #Converting the string into 2d array
+    board_rows = board.split('\n')
+    board_2d = []
+    board_2d = [row.split(' | ') for row in board_rows]
+
 
     #checking rows
     for row in board_2d:    
@@ -37,14 +46,6 @@ def main_loop(board):
     ct_y = 0 
     q = True
     pr_board(board)
-
-
-
-    #Converting the string into 2d array
-    board_rows = board.split('\n')
-    board_2d = []
-    board_2d = [row.split(' | ') for row in board_rows]
-
     #counter
     while q == True:
         # Checking Turns 
@@ -60,8 +61,8 @@ def main_loop(board):
             if x.isnumeric() != True:
                 print("invalid Input")
         #check winner function after every turn
-        winner , symbol = check_winner(board_2d)
-        if winner:
+        winner , symbol = check_winner(board)
+        if winner == True:
             ct_x += 1
             print(f"{symbol} won {ct_x} times")
             
@@ -79,7 +80,7 @@ def main_loop(board):
 
         #check winner after every O turn
         winner , symbol = check_winner(board)
-        if winner:
+        if winner == True :
             ct_y += 1
             print(f"{symbol} won {ct_y} times")
             break
